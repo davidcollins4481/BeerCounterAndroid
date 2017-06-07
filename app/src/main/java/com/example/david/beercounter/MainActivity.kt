@@ -1,19 +1,31 @@
 package com.example.david.beercounter
 
+import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toolbar
-
+import android.view.View
+import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
-    private var toolbar: Toolbar? = null
+    private var addBeer: FloatingActionButton? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        addBeer = findViewById(R.id.addbeer) as FloatingActionButton
+
+        val current = this
+
+        addBeer?.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                Toast.makeText(current, "Adding beer", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
