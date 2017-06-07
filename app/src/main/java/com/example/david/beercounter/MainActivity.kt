@@ -1,5 +1,6 @@
 package com.example.david.beercounter
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -24,8 +25,8 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.settings -> {
-                //val i = Intent(applicationContext, SettingsActivity::class.java)
-                //startActivity(i)
+                val i = Intent(applicationContext, SettingsActivity::class.java)
+                startActivity(i)
                 return true
             }
             else ->
