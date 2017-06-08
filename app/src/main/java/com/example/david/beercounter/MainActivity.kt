@@ -1,7 +1,8 @@
 package com.example.david.beercounter
 
-import android.content.Context
 import android.content.Intent
+import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteOpenHelper
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
@@ -11,19 +12,32 @@ import android.view.View
 import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
-    private var addBeer: FloatingActionButton? = null
+    private var addBeerButton: FloatingActionButton? = null
+    private var helper: BeerDBHelper? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        addBeer = findViewById(R.id.addbeer) as FloatingActionButton
+        addBeerButton = findViewById(R.id.addbeer) as FloatingActionButton
 
         val current = this
+        helper = BeerDBHelper(this)
+        val db: SQLiteDatabase = helper?.writableDatabase as SQLiteDatabase
 
-        addBeer?.setOnClickListener(object : View.OnClickListener {
+        addBeerButton?.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 Toast.makeText(current, "Adding beer", Toast.LENGTH_SHORT).show()
+                
+                //db.addDrink()
+            }
+        })
+
+        addBeerButton?.setOnLongClickListener(object : View.OnLongClickListener {
+            override fun onLongClick(v: View?): Boolean {
+                Toast.makeText(current, "Adding beer long click", Toast.LENGTH_SHORT).show()
+                //db.addDrink()
+                return true
             }
         })
     }
