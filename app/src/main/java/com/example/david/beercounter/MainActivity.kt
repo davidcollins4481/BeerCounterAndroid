@@ -1,35 +1,41 @@
 package com.example.david.beercounter
 
 import android.content.Intent
-import android.database.sqlite.SQLiteDatabase
-import android.database.sqlite.SQLiteOpenHelper
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
+import com.orm.SugarRecord
 
 class MainActivity : AppCompatActivity() {
     private var addBeerButton: FloatingActionButton? = null
-    private var helper: BeerDBHelper? = null
+    private var total: TextView? = null
+    private var today: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         addBeerButton = findViewById(R.id.addbeer) as FloatingActionButton
+        today = findViewById(R.id.todayText) as TextView
+        total = findViewById(R.id.totalText) as TextView
+
+        setCount()
 
         val current = this
-        helper = BeerDBHelper(this)
-        val db: SQLiteDatabase = helper?.writableDatabase as SQLiteDatabase
 
         addBeerButton?.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
+                var drink = Drink()
+                drink.save()
+
+                setCount()
+
                 Toast.makeText(current, "Adding beer", Toast.LENGTH_SHORT).show()
-                
-                //db.addDrink()
             }
         })
 
@@ -60,5 +66,13 @@ class MainActivity : AppCompatActivity() {
                 // Invoke the superclass to handle it.
                 return super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun setCount() {
+        var totalDrinks = SugarRecord.listAll(Drink::class.java)
+        var todayDrinks = Drink.getToday()
+
+        today?.text = todayDrinks.size.toString()
+        total?.text = totalDrinks.size.toString()
     }
 }
