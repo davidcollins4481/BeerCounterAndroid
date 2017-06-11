@@ -3,6 +3,9 @@ package com.example.david.beercounter;
 import android.text.format.DateUtils;
 import com.orm.SugarRecord;
 
+import java.text.DateFormat;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -10,7 +13,7 @@ import java.util.List;
 
 public class Drink extends SugarRecord<Drink> {
     private long consumptiondate;
-    private String type = "Base";
+    private String type = "Beer";
 
     public Drink() {
         // store in UNIX time
@@ -48,5 +51,14 @@ public class Drink extends SugarRecord<Drink> {
 
 
         return result;
+    }
+
+    private String getFormattedConsumptionDate() {
+        Date c = new Date(consumptiondate * 1000L);
+        return c.toString();
+    }
+
+    public String toLineItem() {
+        return String.format("Time: %s", getFormattedConsumptionDate());
     }
 }
