@@ -28,17 +28,22 @@
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:theme="@style/AppTheme" />
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.david.beercounter.MainActivity" />
+        </activity>
 
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".SeeAllEntries"
             android:label="@string/title_activity_see_all_entries"
@@ -48,6 +53,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.david.beercounter.MainActivity" />
         </activity>
+
         <activity
             android:name=".ToolsActivity"
             android:label="@string/title_activity_tools"

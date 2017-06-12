@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(Intent(context, ToolsActivity::class.java))
             }
             R.id.nav_settings -> {
-
+                startActivity(Intent(context, SettingsActivity::class.java))
             }
         }
 

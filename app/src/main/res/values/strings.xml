@@ -86,4 +86,8 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_see_all_entries">Entries</string>
     <string name="title_activity_tools">Tools</string>
+
+    <string name="max_per_day">Max Beers Per Day</string>
+    <string name="sync_with_google_calendar">Sync to Google Calendar</string>
+    <string name="enable_google_calendar_sync">Enable Sync</string>
 </resources>
